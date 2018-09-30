@@ -1,0 +1,8 @@
+[Unit]
+Description=InitRamdiskBrowserCacheDirectories
+
+[Service]
+ExecStart=/home/athrun/bedroom/script/arch/util/init_ramdisk_browser_cache_dir.sh
+
+[Install]
+WantedBy=default.target

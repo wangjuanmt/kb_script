@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+transmission-daemon --foreground --no-watch-dir --no-auth --download-dir $HOME/Downloads --dht --lpd --portmap --global-seedratio 150

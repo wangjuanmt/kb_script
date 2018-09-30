@@ -1,0 +1,35 @@
+version: '2'
+services:
+    mariadb_local_mariadb:
+        image: mariadb
+        container_name: mariadb_local_mariadb
+        networks:
+            - mariadb_local
+        volumes:
+            - mariadb_local_db_data:/var/lib/mysql
+        ports:
+            - '13307:3306'
+        environment:
+            # https://github.com/docker-library/mysql/issues/320
+            TZ: 'UTC'
+            MYSQL_ROOT_PASSWORD: '@ctive123'
+        # https://github.com/docker-library/mariadb/issues/16
+        # https://github.com/docker-library/docs/blob/e72d96051254c263821f8fab32f05e0153221ed9/mariadb/README.md#configuration-without-a-cnf-file
+        # https://github.com/docker-library/mysql/pull/14#issuecomment-234293551
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --skip-character-set-client-handshake
+    mariadb_local_adminer:
+        image: adminer
+        container_name: mariadb_local_adminer
+        networks:
+            - mariadb_local
+        ports:
+            - '18082:8080'
+        links:
+            - mariadb_local_mariadb:mariadb
+volumes:
+    mariadb_local_db_data:
+networks:
+    mariadb_local:

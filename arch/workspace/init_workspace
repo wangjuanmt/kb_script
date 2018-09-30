@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+. /home/$SUDO_USER/bedroom/script/arch/util/env_vars.sh
+
+. $SCRIPT_UTIL_ROOT/init_jdk.sh
+
+# May need to enable multilib
+#sudo pacman -S --noconfirm --needed android-sdk
+
+sudo pacman -S --noconfirm --needed maven
+
+sudo pacman -S --noconfirm --needed intellij-idea-community-edition
+
+#sudo pacman -S --noconfirm --needed go
+
+sudo pacman -S --noconfirm --needed postgresql
+
+sudo pacman -S --noconfirm --needed nodejs npm
+
+#sudo pacman -S --noconfirm --needed teamviewer
+
+# makepkg does not allow to run as root
+#. $SCRIPT_UTIL_ROOT/install_datagrip.sh
+#. $SCRIPT_UTIL_ROOT/install_smartgit.sh

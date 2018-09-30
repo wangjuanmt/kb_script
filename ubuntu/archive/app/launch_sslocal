@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+#[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+. $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+
+if [ "$1" = "help" ]; then
+    echo "Usage: launch_sslocal [help | start/stop config_name]";
+    exit 0;
+fi
+
+echo "Usage: launch_sslocal [help | start/stop config_name]"
+
+if [ "$1" != "start" ] && [ "$1" != "stop" ] && [ "$1" != "help" ]; then
+    printf "Illegal command:%s" $1;
+    exit 1;
+fi
+
+SS_HOME="${APP_ROOT}/network/shadowsocks"
+SS_CONFIG_HOME=$APP_SCRIPT_SHARE/shadowsocks_config
+sudo sslocal -c "${SS_CONFIG_HOME}/${2}.json" -l 1080 -d $1 --log-file $SS_HOME/sslocal.log

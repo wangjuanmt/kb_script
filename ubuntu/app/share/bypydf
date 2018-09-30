@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Download a single file with bypy."
+echo "Usage: bypydf file_path_on_baidu_pcs(starting with a '/')"
+
+DOWNLOAD_TARGET=$1
+
+bypy -v downfile "$DOWNLOAD_TARGET" "$HOME/Downloads$DOWNLOAD_TARGET"

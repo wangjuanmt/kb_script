@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+# Check if running as normal user
+[ $(id -u) == "0" ] && echo "Error: Do NOT run this script as root!" && exit 1
+
+echo "*****************Start $HOME/bedroom/kb/script/osx/util/env_vars.sh*****************"
+. $HOME/bedroom/kb/script/osx/util/env_vars.sh
+echo "-----------------Done $HOME/bedroom/kb/script/osx/util/env_vars.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_xcode_cli_tools.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_xcode_cli_tools.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_xcode_cli_tools.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/init_homebrew.sh*****************"
+. $SCRIPT_UTIL_ROOT/init_homebrew.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/init_homebrew.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_git.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_git.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_git.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_tmux.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_tmux.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_tmux.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_editors.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_editors.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_editors.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_shell_editors.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_shell_editors.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_shell_editors.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_web_browsers.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_web_browsers.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_web_browsers.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_downloader.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_downloader.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_downloader.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_network_tools.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_network_tools.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_network_tools.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_multi_media.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_multi_media.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_multi_media.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_util.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_util.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_util.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh-----------------"

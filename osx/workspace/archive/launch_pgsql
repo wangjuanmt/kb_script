@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#cd $WORKSPACE_ROOT/devsoft/Postgres.app/Contents/Versions/9.4/bin
+postgres -D $WORKSPACE_ROOT/devsoft/pgsqldata #-h 127.0.0.1 -p 5432

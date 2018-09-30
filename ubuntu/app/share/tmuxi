@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+PROJECT_RELATIVE_PATH=$1
+PROJECT_NAME=$2
+PROJECT_ARGS=${@:2}
+
+if [[ $PROJECT_RELATIVE_PATH == "help" ]]; then
+    echo "Usage: tmuxi [project path (which contains project yaml config) relative to $APP_SCRIPT_SHARE/tmuxinator/projects]"
+    exit 0
+fi
+
+PROJECT_HOME=$APP_SCRIPT_SHARE/tmuxinator/projects/$PROJECT_RELATIVE_PATH
+
+if ! [[ -d $PROJECT_HOME ]]; then
+    echo "Tmuxniator project '${PROJECT_HOME}' doesn't exist!"
+    exit 1
+fi
+
+if [[ $PROJECT_NAME == "" ]]; then
+    echo "You didn't provide a project name, will use project relative path as project name."
+    PROJECT_NAME=$PROJECT_RELATIVE_PATH
+fi
+
+cd $PROJECT_HOME
+tmuxinator start $PROJECT_NAME $PROJECT_ARGS

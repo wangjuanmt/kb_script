@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# DO NOT RUN THIS SCRIPT DIRECTLY!
+# Take this script as a reference ONLY!
+echo "HEY! DO NOT RUN THIS SCRIPT DIRECTLY! Take this script as a reference ONLY!" && exit 1
+
+# Create a bootable USB stick with dd
+# Please note that it is the device (e.g. /dev/sdb), and not the partition number (e.g. /dev/sdb1)
+dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx status=progress && sync
+
+# Prepare disk partitions with GParted
+
+# Check network connection
+
+# Check system time
+timedatectl set-ntp true
+timedatectl status
+
+# Format and enable swap partition
+mkswap /dev/sdaX
+swapon /dev/sdaX
+
+# Mount / first
+mount /dev/sdxR /mnt
+
+# Then create mount directory and mount other partitions except swap
+mkdir /mnt/boot
+mount /dev/sda2 /mnt/boot
+mkdir /mnt/home
+mount /dev/sda3 /mnt/home
+
+# Choose best mirror
+echo -e "Server=http://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch\n$(cat /etc/pacman.d/mirrorlist)" > /etc/pacman.d/mirrorlist
+
+# Install system basics
+pacstrap -i /mnt base base-devel
+
+# Generate fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
+# Check /mnt/etc/fstab afterward to ensure it's correct
+
+# Chroot to new system
+arch-chroot /mnt /bin/bash
+
+# Locale
+printf "\nen_US.UTF-8 UTF-8" | tee -a /etc/locale.gen
+printf "\nzh_CN.UTF-8 UTF-8" | tee -a /etc/locale.gen
+printf "\nko_KR.UTF-8 UTF-8" | tee -a /etc/locale.gen
+printf "\nja_JP.UTF-8 UTF-8" | tee -a /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+# Select timezone
+#tzselect
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# Set time standard to UTC
+hwclock --systohc --utc
+
+# Set a password for root
+passwd
+
+# Install bootloader (BIOS/MBR)
+pacman -S --noconfirm grub os-prober
+#grub-install /dev/sda
+
+# Generate configuration file
+grub-mkconfig -o /boot/grub/grub.cfg
+# http://www.torrent-invites.com/showthread.php?t=58489
+# To change boot orders of different systems, edit /etc/default/grub,
+# set GRUB_DEFAULT=0 to make first boot entry selected by default,
+# 1 corresponds to the 2nd entry, etc.
+# Then re-generate grub configuration file like above.
+
+# Set hostname
+echo myhostname > /etc/hostname
+
+# Install WIFI tools
+pacman -S --noconfirm iw wpa_supplicant dialog
+
+exit
+
+reboot

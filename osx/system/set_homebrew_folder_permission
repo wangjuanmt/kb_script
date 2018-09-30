@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# In case of a folder not writable error
+sudo chown -R $TARGET_USER $HOMEBREW_PREFIX/bin
+sudo chown -R $TARGET_USER $HOMEBREW_PREFIX/sbin
+sudo chown -R $TARGET_USER $HOMEBREW_PREFIX/share

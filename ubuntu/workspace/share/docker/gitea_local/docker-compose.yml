@@ -1,0 +1,35 @@
+version: '2'
+# https://github.com/go-gitea/gitea
+# http://gitea.io/
+# https://docs.gitea.io/en-us/install-with-docker/
+services:
+    gitea_local_gitea:
+        image: gitea/gitea:latest
+        container_name: gitea_local_gitea
+        networks:
+            - gitea_local
+        volumes:
+            - gitea_local_gitea_data:/data
+        ports:
+            - '10022:22'
+            - '10080:3000'
+        links:
+            - gitea_db
+    gitea_local_db:
+        image: postgres:alpine
+        container_name: gitea_local_db
+        environment:
+            POSTGRES_USER: 'gitea_admin'
+            POSTGRES_PASSWORD: 'postgres'
+            PGDATA: '/var/lib/postgresql/data/pgdata'
+            POSTGRES_DB: 'gitea'
+            POSTGRES_INITDB_ARGS: "-E UTF8 --locale='en_US.UTF-8'"
+        networks:
+            - gitea_local
+        volumes:
+            - gitea_local_db_data:/var/lib/postgresql/data/pgdata
+volumes:
+    gitea_local_gitea_data:
+    gitea_local_db_data:
+networks:
+    gitea_local:

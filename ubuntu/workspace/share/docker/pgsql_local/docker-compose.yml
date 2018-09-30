@@ -1,0 +1,44 @@
+version: '2'
+services:
+    pgsql_local_pgsql:
+        image: postgres:10-alpine
+        container_name: pgsql_local_pgsql
+        networks:
+            - pgsql_local
+        volumes:
+            - pgsql_local_db_data:/var/lib/postgresql/data/pgsqldata
+        ports:
+            - '15432:5432'
+        environment:
+            TZ: 'UTC'
+            POSTGRES_USER: 'postgres'
+            POSTGRES_PASSWORD: '@ctive123'
+            PGDATA: '/var/lib/postgresql/data/pgsqldata'
+            POSTGRES_INITDB_ARGS: "-E UTF8 --locale='en_US.UTF-8'"
+    pgsql_local_pgweb:
+        image: okampfer/pgweb
+        container_name: pgsql_local_pgweb
+        networks:
+            - pgsql_local
+        ports:
+            - '18080:8080'
+        links:
+            - pgsql_local_pgsql:postgres
+        environment:
+            MULTIPLE_SESSIONS: '1'
+    
+    # https://github.com/sorrell/alpine-omnidb
+    # https://github.com/OmniDB/OmniDB
+    # pgsql_local_omnidb:
+    #     image: sorrell/alpine-omnidb
+    #     container_name: pgsql_local_omnidb
+    #     networks:
+    #         - pgsql_local
+    #     ports:
+    #         - '19000:9000'
+    #     links:
+    #         - pgsql_local_pgsql:postgres
+volumes:
+    pgsql_local_db_data:
+networks:
+    pgsql_local:

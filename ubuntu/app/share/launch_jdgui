@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "This is especially for 'jdgui' command installed by linuxbrew formula athrunsun/genericbinary/jd-gui, to run jd-gui in background."
+echo "NOTE jd-gui will generate a 'jd-gui.cfg' file in the folder you call this script."
+
+cd /tmp
+nohup bash -c jdgui >/dev/null 2>&1 &

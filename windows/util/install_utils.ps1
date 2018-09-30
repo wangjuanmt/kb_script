@@ -1,0 +1,12 @@
+. $ENV:ScriptUtilRoot\install_filetypesman.ps1
+. $ENV:ScriptUtilRoot\install_everything.ps1
+#. $ENV:ScriptUtilRoot\install_fastcopy.ps1
+. $ENV:ScriptUtilRoot\install_sysinternals.ps1
+#. $ENV:ScriptUtilRoot\install_oldcalc.ps1
+. $ENV:ScriptUtilRoot\install_echoargs.ps1
+#. $ENV:ScriptUtilRoot\install_ext2fsd.ps1
+#. $ENV:ScriptUtilRoot\install_space_sniffer.ps1
+#. $ENV:ScriptUtilRoot\install_windirstat.ps1
+#. $ENV:ScriptUtilRoot\install_lock_hunter.ps1
+#. $ENV:ScriptUtilRoot\install_deadlock.ps1
+. $ENV:ScriptUtilRoot\install_sudo.ps1

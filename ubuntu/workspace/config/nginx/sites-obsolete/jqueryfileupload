@@ -1,0 +1,17 @@
+server {
+        client_max_body_size 3M;
+        listen       8003;
+        server_name  localhost;
+		root   /home/athrun/bedroom/workspace/gitrepo/jQuery-File-Upload-9.5.7;
+        index  index.php;
+
+        #charset koi8-r;
+
+        access_log  /var/log/nginx/ruanshiziphp.access.log  main;
+		
+		location ~ \.php$ {
+            fastcgi_pass   127.0.0.1:9000;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+	}

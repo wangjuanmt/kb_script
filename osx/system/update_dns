@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+echo "Usage: update_dns <network_service_name> <dns_name>"
+
+# Set bash delimeter to be line break
+IFS=$'\n'
+
+# DNS Servers
+declare -a tmvpn=('184.72.253.57' '184.72.253.53')
+declare -a opendns=('208.67.222.222' '208.67.220.220')
+declare -a ustc=('202.141.162.123' '202.141.176.93')
+declare -a google=("8.8.8.8" "8.8.4.4")
+declare -a ali=('223.5.5.5' '223.6.6.6')
+
+function set_dns() {
+    target_adapter=$1
+    dns_name=$2
+
+    echo "Updating DNS of $target_adapter to $dns_name"
+
+    # Set target_dns to empty to revert back to DHCP assigned DNS Servers
+    # target_dns='empty'
+
+    # The exclamation mark when referring to combined means "use the variable whose name is defined by the contents of combined"
+    # if [[ $dns_name != 'empty' ]]; then
+    #     combined=dns_${dns_name}
+    #     target_dns=${!combined}
+    # fi
+
+    if [[ $dns_name == 'empty' ]]; then
+        sudo networksetup -setdnsservers $target_adapter empty
+    elif [[ $dns_name == 'tmvpn' ]]; then
+        sudo networksetup -setdnsservers $target_adapter ${tmvpn[0]} ${tmvpn[1]}
+    elif [[ $dns_name == 'opendns' ]]; then
+        sudo networksetup -setdnsservers $target_adapter ${opendns[0]} ${opendns[1]}
+    elif [[ $dns_name == 'ustc' ]]; then
+        sudo networksetup -setdnsservers $target_adapter ${ustc[0]} ${ustc[1]}
+    elif [[ $dns_name == 'google' ]]; then
+        sudo networksetup -setdnsservers $target_adapter ${google[0]} ${google[1]}
+    elif [[ $dns_name == 'ali' ]]; then
+        sudo networksetup -setdnsservers $target_adapter ${ali[0]} ${ali[1]}
+    else
+        echo "DNS not defined for '$dns_name'!"
+    fi
+}
+
+# To get current DNS servers for a network_service
+#dnssvr=(`networksetup -getdnsservers $adapter`)
+
+target_adapter=$1
+dns_name=$2
+
+if [[ $target_adapter == 'all' ]]; then
+    # Get adapter list
+    all_adapters=`networksetup -listallnetworkservices | grep -v denotes`
+
+    for adapter in $all_adapters
+    do
+        set_dns $adapter $dns_name
+    done
+else
+    set_dns $target_adapter $dns_name
+fi

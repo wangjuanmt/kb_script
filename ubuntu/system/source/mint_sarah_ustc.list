@@ -1,0 +1,17 @@
+#/etc/apt/sources.list.d/official-package-repositories.list
+
+deb https://mirrors.ustc.edu.cn/linuxmint sarah main upstream import backport 
+
+deb https://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+#deb-src https://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+#deb-src https://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+#deb-src https://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+#deb-src https://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+#deb-src https://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+#deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+#deb http://archive.canonical.com/ubuntu/ xenial partner

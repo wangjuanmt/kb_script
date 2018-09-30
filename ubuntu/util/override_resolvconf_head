@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+#[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+echo "WARNING! Your original resolvconf head configuration is going to be overriden!"
+echo "Usage:sudo sh override_resolvconf_head <config name, e.g. '114', 'google'>"
+echo "To set resolvconf head to back to empty, execute:"
+echo "sudo override_resolvconf_head empty"
+
+#sudo mv /etc/resolvconf/resolv.conf.d/head /etc/resolvconf/resolv.conf.d/head.backup_$(date +%F-%T)
+sudo rm -f /etc/resolvconf/resolv.conf.d/head
+sudo ln -s $SYSTEM_SCRIPT_ROOT/resolvconf/$1 /etc/resolvconf/resolv.conf.d/head
+sudo resolvconf -u

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Download a directory (recursively) with bypy."
+echo "Usage: bypydd folder_path_on_baidu_pcs(starting with a '/')"
+
+DOWNLOAD_TARGET=$1
+
+bypy -v downdir "$DOWNLOAD_TARGET" "$HOME/Downloads$DOWNLOAD_TARGET"

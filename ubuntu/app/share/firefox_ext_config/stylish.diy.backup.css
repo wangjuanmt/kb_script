@@ -1,0 +1,31 @@
+@-moz-document regexp("^https?:\\/\\/[^\\.]*\\.?bitbucket\\.org\\/.*") {
+#content .aui-page-panel {
+    background: #DBEEDD;
+}
+
+#page {
+    background: #DBEEDD;
+}
+}
+
+@-moz-document regexp("^https?:\\/\\/jbt.github.io\\/markdown\\-editor.*") {
+#out {
+    background: #FFFFFF;
+    font-family: Calibri, Arial, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+}
+
+.CodeMirror.CodeMirror-wrap {
+    font-size: 16px;
+}
+}
+
+@-moz-document regexp("^https?:\\/\\/stackedit\\.io/.*") {
+#preview-contents {
+    font-family: Calibri, Arial, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 16px;
+}
+
+.preview-panel {
+    background: #FFFFFF;
+}
+}

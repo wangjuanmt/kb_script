@@ -1,0 +1,30 @@
+env: "MY_BEDROOM=$HOME/bedroom SCRIPT_HOME=$MY_BEDROOM/script"
+
+branches:
+    only:
+    - stable
+
+jobs:
+    - osx_image: xcode6.4
+      install:
+        - "mkdir $MY_BEDROOM"
+        - "cp -R $TRAVIS_BUILD_DIR $SCRIPT_HOME"
+      script:
+        - "cd $SCRIPT_HOME"
+        - "bash osx/system/init_osx"
+        - "cd $SCRIPT_HOME"
+        - ". $HOME/bedroom/kb/script/osx/util/env_vars.sh"
+        - ". $APP_SCRIPT_ROOT/dotfiles/home/.profile"
+        - "bash osx/system/osx_post_init"
+    - sudo: required
+      dist: trusty
+      install:
+        - "mkdir $MY_BEDROOM"
+        - "cp -R $TRAVIS_BUILD_DIR $SCRIPT_HOME"
+      script:
+        - "cd $SCRIPT_HOME"
+        - "sudo bash ubuntu/system/init_ubuntu"
+        - "cd $SCRIPT_HOME"
+        - ". $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh"
+        - ". $APP_SCRIPT_ROOT/dotfiles/home/.profile"
+        - "bash ubuntu/system/ubuntu_post_init"

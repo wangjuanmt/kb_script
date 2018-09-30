@@ -1,0 +1,40 @@
+[client]
+default-character-set=utf8
+ 
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+user = athrun
+# NOTE! MySQL won't recognize something like '/home/athrun/xxx/xxx'!
+log-error=/home/athrun/bedroom/workspace/devsoft/mysql/log/error.log
+pid-file=/home/athrun/bedroom/workspace/devsoft/mysql/pid/mysqld.pid
+socket=/home/athrun/bedroom/workspace/devsoft/mysql/socket/mysqld.sock
+lc-messages-dir=/home/athrun/bedroom/workspace/devsoft/mysql/share/english/
+
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+ 
+bind-address=127.0.0.1
+port=3306
+#basedir = /home/athrun/bedroom/workspace/devsoft/mysql
+basedir = /usr
+datadir = /home/athrun/bedroom/workspace/devsoft/mysqldata
+max_connections=50
+
+key_buffer_size = 64M
+table_open_cache = 20
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 2M
+myisam_sort_buffer_size = 2M
+join_buffer_size = 2M
+innodb_buffer_pool_size = 64M
+innodb_additional_mem_pool_size = 10M
+innodb_log_file_size = 64M
+innodb_log_buffer_size = 8M
+innodb_flush_log_at_trx_commit = 1
+#innodb_lock_wait_timeout = 30
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 

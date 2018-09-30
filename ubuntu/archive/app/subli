@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# When using "#!/usr/bin/env bash", it will NOT work.
+# NOTE that it won't work either if this script is calling sublime-text installed from linuxbrew
+# via application finder in GNOME desktop (Alt + F2).
+# Reference: https://github.com/lyfeyaj/sublime-text-imfix/blob/master/src/subl
+
+SUBLIME_TEXT_IM_FIX_HOME=$USER_LOCAL_LIB/sublime_text_im_fix
+SUBLIME_TEXT_IM_FIX_LIB=$SUBLIME_TEXT_IM_FIX_HOME/libsublime-imfix.so
+
+export LD_PRELOAD=$SUBLIME_TEXT_IM_FIX_LIB
+
+# Call sublime-text installed from linuxbrew
+#exec $(brew --prefix sublime-text)/bin/subl "$@"
+
+# Call sublime-text installed from official repo
+exec /opt/sublime_text/sublime_text "$@"

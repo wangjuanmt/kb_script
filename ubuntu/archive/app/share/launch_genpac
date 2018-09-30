@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+GENPAC_CONFIG_HOME=$APP_SCRIPT_SHARE/gfw
+#genpac --config-from=$GENPAC_CONFIG_HOME/genpac_config.ini
+
+genpac -p "SOCKS5 127.0.0.1:1080" \
+--gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" \
+--gfwlist-local="$GENPAC_CONFIG_HOME/gfwlist.txt" \
+--update-gfwlist-local --user-rule-from="$GENPAC_CONFIG_HOME/genpac_user_rules.txt" \
+-o "$GENPAC_CONFIG_HOME/genpac_autoproxy.pac"

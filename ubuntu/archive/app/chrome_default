@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "Running multiple Chrome instance can be replaced with multiple profiles of a single Chrome installation. Consider setting up another profile!"
+exit 0
+
+#export LANGUAGE=zh_CN:zh
+
+CHROME_HOME=$APP_ROOT/browser/chrome
+export CHROME_DEVEL_SANDBOX=$CHROME_HOME/program/default/chrome-sandbox
+#export CHROME_USER_DATA_DIR=$CHROME_HOME/profile/default
+
+$CHROME_HOME/program/default/google-chrome --user-data-dir=$CHROME_HOME/profile/default --disk-cache-dir=$HOME/.cache/chrome_default

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Ramdisk for Chrome cache
+# NOTE: ramdisk device (/dev/***) and mountpoint (/Volumes/ChromeCache) will be removed after reboot,
+# Try adding the following line to /etc/fstab seems not working either:
+# UUID=E0CC5C9F-0AE7-3114-A959-A12EE5F70180 /Volumes/ChromeCache hfs rw,auto,nodev,nosuid,noowners 0 0
+# Also NOTE that if ramdisk is not created, Chrome cache will be disabled 
+# since the cache dir (~/Library/Caches/Google/Chrome) is occupied by a dead link we created .
+
+CHROME_CACHE_DIR=$HOME/Library/Caches/Google/Chrome
+BROWSER_CACHE_RAMDISK_MNT_DIR=/Volumes/BrowserCache
+CHROME_CACHE_RAMDISK_MNT_DIR=$BROWSER_CACHE_RAMDISK_MNT_DIR/chrome
+
+$SYSTEM_SCRIPT_ROOT/ramdisk create "BrowserCache" 512
+
+# Set correct user & group and permissions for mounted cache dir
+#sudo chmod 755 $BROWSER_CACHE_RAMDISK_MNT_DIR
+#sudo chown -R $TARGET_USER:$TARGET_USER_GROUP $BROWSER_CACHE_RAMDISK_MNT_DIR
+
+# Remove existing cache folder
+rm -rf $CHROME_CACHE_DIR
+
+# Link Chrome cache dir to ramdisk and set correct user & group for it
+mkdir $CHROME_CACHE_RAMDISK_MNT_DIR
+ln -s $CHROME_CACHE_RAMDISK_MNT_DIR $CHROME_CACHE_DIR
+chown -h $TARGET_USER:$TARGET_USER_GROUP $CHROME_CACHE_DIR

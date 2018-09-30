@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Check if running as normal user
+[ $(id -u) == "0" ] && echo "Error: Do NOT run this script as root!" && exit 1
+
+echo "*****************Start $HOME/bedroom/kb/script/osx/util/env_vars.sh*****************"
+. $HOME/bedroom/kb/script/osx/util/env_vars.sh
+echo "-----------------Done $HOME/bedroom/kb/script/osx/util/env_vars.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/custom_profile.sh*****************"
+. $SCRIPT_UTIL_ROOT/custom_profile.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/custom_profile.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/custom_bashrc.sh*****************"
+. $SCRIPT_UTIL_ROOT/custom_bashrc.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/custom_bashrc.sh-----------------"
+
+
+echo "*****************Start $APP_SCRIPT_ROOT/stow_dotfiles.sh*****************"
+. $APP_SCRIPT_ROOT/stow_dotfiles.sh
+echo "-----------------Done $APP_SCRIPT_ROOT/stow_dotfiles.sh-----------------"
+
+
+echo "Done! Now logout and login again."

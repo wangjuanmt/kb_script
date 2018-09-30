@@ -1,0 +1,33 @@
+version: '2'
+# https://github.com/gogits/gogs
+services:
+    gogs_local_gogs:
+        image: gogs/gogs
+        container_name: gogs_local_gogs
+        networks:
+            - gogs_local
+        volumes:
+            - gogs_local_gogs_data:/data
+        ports:
+            - '10022:22'
+            - '10080:3000'
+        links:
+            - gogs_local_db
+    gogs_local_db:
+        image: postgres:alpine
+        container_name: gogs_local_db
+        environment:
+            POSTGRES_USER: 'gogs_admin'
+            POSTGRES_PASSWORD: 'postgres'
+            PGDATA: '/var/lib/postgresql/data/pgdata'
+            POSTGRES_DB: 'gogs'
+            POSTGRES_INITDB_ARGS: "-E UTF8 --locale='en_US.UTF-8'"
+        networks:
+            - gogs_local
+        volumes:
+            - gogs_local_db_data:/var/lib/postgresql/data/pgdata
+volumes:
+    gogs_local_gogs_data:
+    gogs_local_db_data:
+networks:
+    gogs_local:

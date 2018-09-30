@@ -1,0 +1,45 @@
+{
+    "*": {
+        "_enabled": true,
+        "_rules": {
+            "body": {
+                "background": "#DBEEDD"
+            }
+        }
+    },
+    "^https?:\\/\\/[^\\.]*\\.?bitbucket\\.org\\/.*": {
+        "_enabled": "checked",
+        "_rules": {
+            "#content .aui-page-panel": {
+                "background": "#DBEEDD"
+            },
+            "#page": {
+                "background": "#DBEEDD"
+            }
+        }
+    },
+    "^https?:\\/\\/jbt.github.io\\/markdown\\-editor.*": {
+        "_enabled": true,
+        "_rules": {
+            "#out": {
+                "background": "#FFFFFF",
+                "font-family": "Calibri, Arial, Helvetica, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", NotoColorEmoji, \"Segoe UI Symbol\", \"Android Emoji\", EmojiSymbols"
+            },
+            ".CodeMirror.CodeMirror-wrap": {
+                "font-size": "16px"
+            }
+        }
+    },
+    "^https?:\\/\\/stackedit\\.io/.*": {
+        "_enabled": "checked",
+        "_rules": {
+            "#preview-contents": {
+                "font-family": "Calibri, Arial, Helvetica, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", NotoColorEmoji, \"Segoe UI Symbol\", \"Android Emoji\", EmojiSymbols",
+                "font-size": "16px"
+            },
+            ".preview-panel": {
+                "background": "#FFFFFF"
+            }
+        }
+    }
+}

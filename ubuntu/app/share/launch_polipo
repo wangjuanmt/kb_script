@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+polipo -c $APP_SCRIPT_SHARE/polipo_config/config

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+. $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+
+# Create ramdisk
+sudo bash $SYSTEM_SCRIPT_ROOT/ramdisk create BrowserCache 512M
+
+. $SYSTEM_SCRIPT_ROOT/init_ramdisk_browser_cache_dir
+
+# Auto start item for creating ramdisk browser cache directories on user login is handled by pose init phase 1 script.

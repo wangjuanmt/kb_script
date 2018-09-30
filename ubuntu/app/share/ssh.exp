@@ -1,0 +1,13 @@
+#!/usr/bin/env expect
+
+# How to enter ssh password using bash? https://stackoverflow.com/a/16928662/1239295
+# How to pass argument in expect through command line in shell script: https://stackoverflow.com/a/17060172/1239295
+
+set server_addr [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+
+spawn ssh $username@$server_addr
+expect "assword:"
+send "$password\r"
+interact

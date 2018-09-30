@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+TRAN_REMOTE_CLI_GIT_REPO=https://github.com/fagga/transmission-remote-cli
+TRAN_REMOTE_CLI_TARGET_DIR=$USER_LOCAL_APP/transmission-remote-cli
+TRAN_REMOTE_CLI_LINK_TARGET=$USER_LOCAL_BIN/transmission-remote-cli
+
+[ -d $TRAN_REMOTE_CLI_TARGET_DIR ] && rm -rf $TRAN_REMOTE_CLI_TARGET_DIR
+[ -L $TRAN_REMOTE_CLI_LINK_TARGET ] && rm $TRAN_REMOTE_CLI_LINK_TARGET
+
+git clone $TRAN_REMOTE_CLI_GIT_REPO $TRAN_REMOTE_CLI_TARGET_DIR
+
+ln -s $TRAN_REMOTE_CLI_TARGET_DIR/transmission-remote-cli $TRAN_REMOTE_CLI_LINK_TARGET

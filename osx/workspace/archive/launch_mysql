@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+DEVSOFT_ROOT=$WORKSPACE_ROOT/devsoft
+DEVSOFT_MYSQL_ROOT=$DEVSOFT_ROOT/mysql
+MYSQL_DATA_ROOT=$DEVSOFT_ROOT/mysqldata
+
+# Launch mysql using mysqld_safe
+#$DEVSOFT_MYSQL_ROOT/bin/mysqld_safe --ledir=$DEVSOFT_MYSQL_ROOT/bin
+
+# Launch mysql installed in custom location (devsoft/mysql) using mysqld directly
+#$DEVSOFT_MYSQL_ROOT/bin/mysqld \
+#--defaults-file=$WORKSPACE_SCRIPT_ROOT/config/mysql/my.cnf \
+#--socket=$DEVSOFT_MYSQL_ROOT/mysqld.sock \
+#--basedir=$DEVSOFT_MYSQL_ROOT \
+#--datadir=$MYSQL_DATA_ROOT \
+#--pid-file=$DEVSOFT_MYSQL_ROOT/mysqld.pid \
+#--tmpdir=$DEVSOFT_MYSQL_ROOT/tmp \
+#--lc-messages-dir=$DEVSOFT_MYSQL_ROOT/share/english \
+#--log-error=$DEVSOFT_MYSQL_ROOT/error.log
+
+# Launch homebrew mysql
+mysqld --defaults-file=$WORKSPACE_SCRIPT_ROOT/config/mysql/my.cnf \
+--datadir=$MYSQL_DATA_ROOT

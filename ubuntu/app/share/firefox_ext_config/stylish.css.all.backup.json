@@ -1,0 +1,40 @@
+[
+	{
+		"name": "DIY",
+		"enabled": true,
+		"sections": [
+			{
+				"code": "#content .aui-page-panel {\n    background: #DBEEDD;\n}\n\n#page {\n    background: #DBEEDD;\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/[^\\.]*\\.?bitbucket\\.org\\/.*"
+				]
+			},
+			{
+				"code": "#out {\n    background: #FFFFFF;\n    font-family: Calibri, Arial, Helvetica, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", NotoColorEmoji, \"Segoe UI Symbol\", \"Android Emoji\", EmojiSymbols;\n}\n\n.CodeMirror.CodeMirror-wrap {\n    font-size: 16px;\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/jbt.github.io\\/markdown\\-editor.*"
+				]
+			},
+			{
+				"code": "#preview-contents {\n    font-family: Calibri, Arial, Helvetica, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", NotoColorEmoji, \"Segoe UI Symbol\", \"Android Emoji\", EmojiSymbols;\n    font-size: 16px;\n}\n\n.preview-panel {\n    background: #FFFFFF;\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/stackedit\\.io/.*"
+				]
+			}
+		],
+		"updateUrl": null,
+		"md5Url": null,
+		"url": null,
+		"originalMd5": null,
+		"id": 1
+	}
+]

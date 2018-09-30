@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Launch firefox stable version
+
+FF_HOME=$(brew --prefix firefox-browser)
+FF_PROFILE_PATH=$USER_LOCAL_APP/firefox/profile/stable
+
+[[ ! -d $FF_PROFILE_PATH ]] && mkdir -p $FF_PROFILE_PATH
+
+$FF_HOME/firefox-browser --profile $FF_PROFILE_PATH --no-remtote

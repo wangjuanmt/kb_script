@@ -1,0 +1,22 @@
+{
+ "baidu_active_uid": 119733019,
+ "baidu_user_list": [
+  {
+   "uid": 119733019,
+   "name": "笨鸟飞仙",
+   "sex": "♂",
+   "age": 9.4,
+   "bduss": "VhjcEt0SnlWVzJXNENIVmpaTk4tcXFRTEJKUXJKMXVtbHAwWUV0cW1FRFc5TWxiQVFBQUFBJCQAAAAAAAAAAAEAAAAb-yIHsb~E8bfJz8kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANZnolvWZ6JbO",
+   "ptoken": "3dcbc9ff07dccaafb880ca05b2929027",
+   "stoken": "193f54820dd5c72107dfb252572eb9c7b79460007d9fac9e0571082c2478e508",
+   "workdir": "/"
+  }
+ ],
+ "appid": 266719,
+ "cache_size": 30000,
+ "max_parallel": 100,
+ "max_download_load": 1,
+ "user_agent": "netdisk;8.3.1;android-android",
+ "savedir": "/home/athrun/Downloads",
+ "enable_https": false
+}

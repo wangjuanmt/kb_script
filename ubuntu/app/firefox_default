@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Refer to "cat $(which firefox)" for options
+#FF_HOME=$APP_ROOT/browser/firefox
+#MOZ_LIBDIR=$FF_HOME/program/default
+#MOZ_APP_NAME=firefox
+
+if ! hash firefox 2>/dev/null
+then
+    echo "'firefox' executable not found!"
+    exit 1
+fi
+
+FIREFOX_BIN_PATH=$(which firefox)
+FIREFOX_PROFILE_ROOT="$USER_LOCAL_LIB/firefox/profile"
+FIREFOX_DEFAULT_PROFILE_PATH="$FIREFOX_PROFILE_ROOT/default"
+
+mkdir -p $FIREFOX_DEFAULT_PROFILE_PATH
+
+# Change dir to /tmp beforehand in case it creates any output files
+cd /tmp
+
+# Completely detached from terminal
+nohup bash -c "$FIREFOX_BIN_PATH --no-remote --profile $FIREFOX_DEFAULT_PROFILE_PATH" </dev/null >/dev/null 2>&1 &

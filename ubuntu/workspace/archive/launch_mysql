@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+DEVSOFT_ROOT=$WORKSPACE_ROOT/devsoft
+MYSQL_ROOT=$DEVSOFT_ROOT/mysql
+MYSQL_DATA_ROOT=$DEVSOFT_ROOT/mysqldata
+
+#$MYSQL_ROOT/bin/mysqld_safe --ledir=$MYSQL_ROOT/bin
+$MYSQL_ROOT/bin/mysqld \
+--defaults-file=$WORKSPACE_SCRIPT_ROOT/config/mysql/my.cnf \
+--socket=$MYSQL_ROOT/mysqld.sock \
+--basedir=$MYSQL_ROOT \
+--datadir=$MYSQL_DATA_ROOT \
+--pid-file=$MYSQL_ROOT/mysqld.pid \
+--tmpdir=$MYSQL_ROOT/tmp \
+--lc-messages-dir=$MYSQL_ROOT/share/english \
+--log-error=$MYSQL_ROOT/error.log

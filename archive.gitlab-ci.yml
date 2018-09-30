@@ -1,0 +1,36 @@
+variables:
+  MY_BEDROOM: "/home/athrun/bedroom"
+  SCRIPT_HOME: "$MY_BEDROOM/script"
+
+stages:
+  - test
+
+job_test_on_ubuntu:
+  image: okampfer/ubuntu_for_script_repo_on_gitlab_ci
+  stage: test
+  only:
+    - stable
+  script:
+    - mkdir $MY_BEDROOM
+    - cp -R $CI_PROJECT_DIR $SCRIPT_HOME
+    - cd $SCRIPT_HOME
+    - sudo bash ubuntu/system/init_system_ubuntu
+    - cd $SCRIPT_HOME
+    - . $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+    - . $APP_SCRIPT_ROOT/dotfiles/home/.profile
+    - bash ubuntu/system/init_system_phase_2
+
+job_test_on_linux_mint:
+  image: okampfer/linux_mint_for_script_repo_on_gitlab_ci
+  stage: test
+  only:
+    - stable
+  script:
+    - mkdir $MY_BEDROOM
+    - cp -R $CI_PROJECT_DIR $SCRIPT_HOME
+    - cd $SCRIPT_HOME
+    - sudo bash ubuntu/system/init_system_mint
+    - cd $SCRIPT_HOME
+    - . $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+    - . $APP_SCRIPT_ROOT/dotfiles/home/.profile
+    - bash ubuntu/system/init_system_phase_2

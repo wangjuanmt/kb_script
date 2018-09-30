@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Launch firefox beta version
+
+FF_HOME=$(brew --prefix firefox-browser-beta)
+FF_PROFILE_PATH=$USER_LOCAL_APP/firefox/profile/beta
+
+[[ ! -d $FF_PROFILE_PATH ]] && mkdir -p $FF_PROFILE_PATH
+
+$FF_HOME/firefox-browser-beta --profile $FF_PROFILE_PATH --no-remtote

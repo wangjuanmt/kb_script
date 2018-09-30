@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+$HOME/node_modules/appium/bin/appium.js -a 127.0.0.1 --platform-name Android --automation-name Appium

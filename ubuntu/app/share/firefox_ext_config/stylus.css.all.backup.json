@@ -1,0 +1,41 @@
+[
+	{
+		"installDate": 1514531408944,
+		"name": "DIY",
+		"enabled": true,
+		"sections": [
+			{
+				"code": ".CodeMirror-code {\n    font-size: 16px;\n}\n\n#out {\n    background: #FFFFFF;\n    font-family: 'Roboto Mono Medium', 'Source Code Pro Medium', Monaco, 'Source Han Sans SC Medium', 'Microsoft Yahei UI', 'WenQuanYi Micro Hei Mono';\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/jbt.github.io\\/markdown\\-editor.*"
+				]
+			},
+			{
+				"code": "#preview-contents {\n    font-family: 'Roboto Mono Medium', 'Source Code Pro Medium', Monaco, 'Source Han Sans SC Medium', 'Microsoft Yahei UI', 'WenQuanYi Micro Hei Mono';\n    font-size: 16px;\n}\n\n.preview-panel {\n    background: #FFFFFF;\n}\n\n.preview {\n    font-family: 'Roboto Mono Medium', 'Source Code Pro Medium', Monaco, 'Source Han Sans SC Medium', 'Microsoft Yahei UI', 'WenQuanYi Micro Hei Mono';\n    font-size: 16px;\n    background: #FFFFFF;\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/stackedit\\.io/.*"
+				]
+			},
+			{
+				"code": "#code {\n    font-size: 16px;\n}\n\n#out {\n    background: #FFFFFF;\n    font-family: 'Roboto Mono Medium', 'Source Code Pro Medium', Monaco, 'Source Han Sans SC Medium', 'Microsoft Yahei UI', 'WenQuanYi Micro Hei Mono';\n}",
+				"urls": [],
+				"urlPrefixes": [],
+				"domains": [],
+				"regexps": [
+					"^https?:\\/\\/athrunsun\\.github\\.io\\/markdown\\-editor.*"
+				]
+			}
+		],
+		"updateUrl": null,
+		"md5Url": null,
+		"url": null,
+		"originalMd5": null,
+		"id": 1
+	}
+]

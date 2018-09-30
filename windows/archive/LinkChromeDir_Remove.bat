@@ -1,0 +1,1 @@
+RMDIR /S /Q "%LOCALAPPDATA%\Google\Chrome\User Data"

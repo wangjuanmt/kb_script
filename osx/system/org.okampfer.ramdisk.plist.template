@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.okampfer.ramdisk</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>[USER_HOME]/bedroom/kb/script/osx/system/create_ramdisk_for_browser_cache.sh</string>
+        <string>[USER_HOME]</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <!-- Uncomment the following lines to enable debugging -->
+    <!-- <key>StandardOutPath</key>
+    <string>[USER_HOME]/Downloads/ramdisk_out.log</string>
+    <key>StandardErrorPath</key>
+    <string>[USER_HOME]/Downloads/ramdisk_error.log</string>
+    <key>Debug</key>
+    <true/> -->
+</dict>
+</plist>

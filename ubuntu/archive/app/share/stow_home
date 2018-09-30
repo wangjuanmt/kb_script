@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# [ -f "$HOME/.bash_profile" ] && mv $HOME/.bash_profile $HOME/.bash_profile.backup_$(date +%F-%T)
+# [ -L "$HOME/.bash_profile" ] && rm $HOME/.bash_profile
+
+# [ -f "$HOME/.profile" ] && mv $HOME/.profile $HOME/.profile.backup_$(date +%F-%T)
+# [ -L "$HOME/.profile" ] && rm $HOME/.profile
+
+# [ -f "$HOME/.bashrc" ] && mv $HOME/.bashrc $HOME/.bashrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.bashrc" ] && rm $HOME/.bashrc
+
+# [ -f "$HOME/.zprofile" ] && mv $HOME/.zprofile $HOME/.zprofile.backup_$(date +%F-%T)
+# [ -L "$HOME/.zprofile" ] && rm $HOME/.zprofile
+
+# [ -f "$HOME/.zshrc" ] && mv $HOME/.zshrc $HOME/.zshrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.zshrc" ] && rm $HOME/.zshrc
+
+# [ -f "$HOME/.npmrc" ] && mv $HOME/.npmrc $HOME/.npmrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.npmrc" ] && rm $HOME/.npmrc
+
+# [ -f "$HOME/.cnpmrc" ] && mv $HOME/.cnpmrc $HOME/.cnpmrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.cnpmrc" ] && rm $HOME/.cnpmrc
+
+# [ -f "$HOME/.gemrc" ] && mv $HOME/.gemrc $HOME/.gemrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.gemrc" ] && rm $HOME/.gemrc
+
+# [ -f "$HOME/.vimrc" ] && mv $HOME/.vimrc $HOME/.vimrc.backup_$(date +%F-%T)
+# [ -L "$HOME/.vimrc" ] && rm $HOME/.vimrc
+
+# [ -f "$HOME/.tmux.conf" ] && mv $HOME/.tmux.conf $HOME/.tmux.conf.backup_$(date +%F-%T)
+# [ -L "$HOME/.tmux.conf" ] && rm $HOME/.tmux.conf
+
+# [ -d "$HOME/.proxychains" ] && mv $HOME/.proxychains $HOME/.proxychains.backup_$(date +%F-%T)
+# [ -L "$HOME/.proxychains" ] && rm $HOME/.proxychains
+
+# Loop through all dot files
+# Ref #1: http://www.cyberciti.biz/faq/bash-loop-over-file/
+# Ref #2: http://unix.stackexchange.com/questions/162586/
+shopt -s nullglob
+
+for file in $APP_SCRIPT_ROOT/dotfiles/home/{.,}*
+do
+    filename=${file##*/}
+    echo $filename
+    # Test link before file b/c links will be treated as files as well.
+    if [[ -L "$HOME/$filename" ]]; then
+        echo "Found link $filename, will rename it."
+        mv $HOME/$filename $HOME/${filename}.backup_$(date +%F-%T)
+    elif [[ -f "$HOME/$filename" ]]; then
+        echo "Found file $filename, will rename it."
+        mv $HOME/$filename $HOME/${filename}.backup_$(date +%F-%T)
+    else
+        echo "Didn't find file/link $filename."
+    fi
+done
+
+stow -d $APP_SCRIPT_ROOT/dotfiles -t $HOME -S home

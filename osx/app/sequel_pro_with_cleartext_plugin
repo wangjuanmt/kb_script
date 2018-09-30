@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN=y /Applications/Sequel\ Pro.app/Contents/MacOS/Sequel\ Pro &

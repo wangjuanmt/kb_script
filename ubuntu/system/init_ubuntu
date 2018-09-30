@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+# Whether we are using bash on Ubuntu on Windows
+RUN_ON_WSL=$1
+
+if [[ $RUN_ON_WSL == "" ]]; then
+    RUN_ON_WSL="false"
+fi
+
+echo "*****************Start $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh*****************"
+source $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+echo "-----------------Done $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh-----------------"
+
+
+echo "*****************Start $SYSTEM_SCRIPT_ROOT/create_custom_dnsmasq_domains.sh*****************"
+. $SYSTEM_SCRIPT_ROOT/create_custom_dnsmasq_domains.sh
+echo "-----------------Done $SYSTEM_SCRIPT_ROOT/create_custom_dnsmasq_domains.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/add_ppa_repos.sh*****************"
+. $SCRIPT_UTIL_ROOT/add_ppa_repos.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/add_ppa_repos.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_util_before_hand.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_util_before_hand.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_util_before_hand.sh-----------------"
+
+
+echo "*****************Start $SYSTEM_SCRIPT_ROOT/replace_ppa_domain_name.sh*****************"
+. $SYSTEM_SCRIPT_ROOT/replace_ppa_domain_name.sh
+echo "-----------------Done $SYSTEM_SCRIPT_ROOT/replace_ppa_domain_name.sh-----------------"
+
+
+echo "*****************Start apt-get update*****************"
+sudo apt-get update
+echo "-----------------Done apt-get update-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/allow_https_for_apt.sh*****************"
+. $SCRIPT_UTIL_ROOT/allow_https_for_apt.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/allow_https_for_apt.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_gdebi_synaptic.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_gdebi_synaptic.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_gdebi_synaptic.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/create_linuxbrew_home_prefix_dir.sh*****************"
+. $SCRIPT_UTIL_ROOT/create_linuxbrew_home_prefix_dir.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/create_linuxbrew_home_prefix_dir.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/purge_thunderbird.sh*****************"
+. $SCRIPT_UTIL_ROOT/purge_thunderbird.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/purge_thunderbird.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_git.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_git.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_git.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/init_python.sh*****************"
+. $SCRIPT_UTIL_ROOT/init_python.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/init_python.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/init_ruby.sh*****************"
+. $SCRIPT_UTIL_ROOT/init_ruby.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/init_ruby.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_tmux.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_tmux.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_tmux.sh-----------------"
+
+
+if [[ $RUN_ON_WSL == "false" ]]; then
+    echo "*****************Start $SCRIPT_UTIL_ROOT/install_editors.sh*****************"
+    . $SCRIPT_UTIL_ROOT/install_editors.sh
+    echo "-----------------Done $SCRIPT_UTIL_ROOT/install_editors.sh-----------------"
+
+
+    echo "*****************Start $SCRIPT_UTIL_ROOT/install_shell_editors.sh*****************"
+    . $SCRIPT_UTIL_ROOT/install_shell_editors.sh
+    echo "-----------------Done $SCRIPT_UTIL_ROOT/install_shell_editors.sh-----------------"
+
+
+    echo "*****************Start $SCRIPT_UTIL_ROOT/install_web_browsers.sh*****************"
+    . $SCRIPT_UTIL_ROOT/install_web_browsers.sh
+    echo "-----------------Done $SCRIPT_UTIL_ROOT/install_web_browsers.sh-----------------"
+
+
+    echo "*****************Start $SCRIPT_UTIL_ROOT/install_ime.sh*****************"
+    . $SCRIPT_UTIL_ROOT/install_ime.sh
+    echo "-----------------Done $SCRIPT_UTIL_ROOT/install_ime.sh-----------------"
+fi
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_downloader.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_downloader.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_downloader.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_network_tools.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_network_tools.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_network_tools.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_multi_media.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_multi_media.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_multi_media.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_shells.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_shells.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_shells.sh-----------------"
+
+
+#echo "*****************Start $SCRIPT_UTIL_SHARE/set_default_shell.sh*****************"
+#. $SCRIPT_UTIL_SHARE/set_default_shell.sh
+#echo "-----------------Done $SCRIPT_UTIL_SHARE/set_default_shell.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_util.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_util.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_util.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_dev_tools.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_dev_tools.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_dev_tools.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_linuxbrew_dependencies.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_linuxbrew_dependencies.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_linuxbrew_dependencies.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_pyenv_dependencies.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_rbenv_dependencies.sh-----------------"
+
+
+echo "*****************Start $SYSTEM_SCRIPT_ROOT/create_ramdisk_for_browser_cache*****************"
+. $SYSTEM_SCRIPT_ROOT/create_ramdisk_for_browser_cache
+echo "-----------------Done $SYSTEM_SCRIPT_ROOT/create_ramdisk_for_browser_cache-----------------"
+
+
+echo "*****************Start apt-get autoremove -y*****************"
+sudo apt-get autoremove -y
+echo "-----------------Done apt-get autoremove -y-----------------"

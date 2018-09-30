@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Mount remote filesystem
+mkdir -p $HOME/koding/okampfer.koding.io
+sshfs -o IdentityFile=$HOME/.ssh/id_rsa okampfer@okampfer.koding.io:/home/okampfer $HOME/koding/okampfer.koding.io
+# To unmount it, execute
+#umount $HOME/koding/okampfer.koding.io
+
+# Configure port forwarding
+# mysql
+ssh -L 33060:localhost:3306 okampfer@okampfer.koding.io
+
+# Turn remote machine into a socks proxy server
+#ssh -C -D 1080 okampfer@okampfer.koding.io

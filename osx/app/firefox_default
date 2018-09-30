@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+FIREFOX_DEFAULT_INSTALLATION_PATH="/Applications/Firefox.app"
+FIREFOX_BIN_PATH="$FIREFOX_DEFAULT_INSTALLATION_PATH/Contents/MacOS/firefox"
+FIREFOX_PROFILE_ROOT="$USER_LOCAL_LIB/firefox/profile"
+FIREFOX_DEFAULT_PROFILE_PATH="$FIREFOX_PROFILE_ROOT/default"
+
+if ! [[ -d $FIREFOX_DEFAULT_INSTALLATION_PATH ]]
+then
+    echo "Firefox app not found at '$FIREFOX_DEFAULT_INSTALLATION_PATH'!"
+    exit 1
+fi
+
+mkdir -p $FIREFOX_DEFAULT_PROFILE_PATH
+
+# Change dir to /tmp beforehand in case it creates any output files
+cd /tmp
+
+# Completely detached from terminal
+nohup bash -c "$FIREFOX_BIN_PATH --no-remote --profile $FIREFOX_DEFAULT_PROFILE_PATH" </dev/null >/dev/null 2>&1 &

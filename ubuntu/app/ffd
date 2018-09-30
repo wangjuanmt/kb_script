@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Launch firefox developer version
+
+FF_HOME=$(brew --prefix firefox-browser-dev)
+FF_PROFILE_PATH=$USER_LOCAL_APP/firefox/profile/dev
+
+[[ ! -d $FF_PROFILE_PATH ]] && mkdir -p $FF_PROFILE_PATH
+
+$FF_HOME/firefox-browser-dev --profile $FF_PROFILE_PATH --no-remtote

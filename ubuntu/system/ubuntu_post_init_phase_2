@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+# Check if running as normal user
+[ $(id -u) == "0" ] && echo "Error: Do NOT run this script as root!" && exit 1
+
+# If we're not formatting home partition, we don't have to install
+# the following items.
+
+# Whether we are using bash on Ubuntu on Windows
+RUN_ON_WSL=$1
+
+if [[ $RUN_ON_WSL == "" ]]; then
+    RUN_ON_WSL="false"
+fi
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_user_local_dirs.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_user_local_dirs.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_user_local_dirs.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/init_linuxbrew.sh*****************"
+. $SCRIPT_UTIL_ROOT/init_linuxbrew.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/init_linuxbrew.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_pyenv.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_pyenv.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_pyenv.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_rbenv.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_rbenv.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_rbenv.sh-----------------"
+
+
+# echo "*****************Start $SCRIPT_UTIL_SHARE/init_nodenv.sh*****************"
+# . $SCRIPT_UTIL_SHARE/init_nodenv.sh
+# echo "-----------------Done $SCRIPT_UTIL_SHARE/init_nodenv.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_n.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_n.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_n.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_gvm.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_gvm.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_gvm.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_tmux.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_tmux.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_tmux.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_vim.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_vim.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_vim.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_neovim.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_neovim.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_neovim.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_fonts.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_fonts.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_fonts.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/init_shells.sh*****************"
+. $SCRIPT_UTIL_SHARE/init_shells.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/init_shells.sh-----------------"
+
+
+if [[ $RUN_ON_WSL == "true" ]]; then
+    echo "*****************Start $SCRIPT_UTIL_SHARE/install_mintty_colors_solarized.sh*****************"
+    . $SCRIPT_UTIL_SHARE/install_mintty_colors_solarized.sh
+    echo "-----------------Done $SCRIPT_UTIL_SHARE/install_mintty_colors_solarized.sh-----------------"
+fi
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_editors_in_home.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_editors_in_home.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_editors_in_home.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_shell_editors_in_home.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_shell_editors_in_home.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_shell_editors_in_home.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_SHARE/install_util_in_home.sh*****************"
+. $SCRIPT_UTIL_SHARE/install_util_in_home.sh
+echo "-----------------Done $SCRIPT_UTIL_SHARE/install_util_in_home.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_network_tools_in_home.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_network_tools_in_home.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_network_tools_in_home.sh-----------------"
+
+
+echo "*****************Start $SCRIPT_UTIL_ROOT/install_downloader_in_home.sh*****************"
+. $SCRIPT_UTIL_ROOT/install_downloader_in_home.sh
+echo "-----------------Done $SCRIPT_UTIL_ROOT/install_downloader_in_home.sh-----------------"
+
+
+echo "*****************Start $WORKSPACE_SCRIPT_ROOT/init_workspace.sh*****************"
+. $WORKSPACE_SCRIPT_ROOT/init_workspace.sh
+echo "-----------------Done $WORKSPACE_SCRIPT_ROOT/init_workspace.sh-----------------"
+
+
+#echo "*****************Start $SCRIPT_UTIL_ROOT/change_root_password.sh*****************"
+#. $SCRIPT_UTIL_ROOT/change_root_password.sh
+#echo "-----------------Done $SCRIPT_UTIL_ROOT/change_root_password.sh-----------------"

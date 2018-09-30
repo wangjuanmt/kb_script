@@ -1,0 +1,1 @@
+plutil -convert xml1 -o $APP_SCRIPT_ROOT/terminal_pref/com.apple.Terminal.plist $HOME/Library/Preferences/com.apple.Terminal.plist

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+echo "WARNING! Your original resolvconf configuration is going to be overriden!"
+echo "Usage: override_resolvconf <config_name, e.g. '114', 'google'> <link_target_name, head/base/tail>"
+echo "To set resolvconf back to empty, execute: override_resolvconf empty"
+
+. $HOME/bedroom/kb/script/ubuntu/util/env_vars.sh
+
+CONFIG_NAME=$1
+LINK_TARGET_NAME=$2
+IS_PRIVATE=$3
+
+if [[ "$IS_PRIVATE" = "true" ]]; then
+    LINK_SOURCE=$PRIVATE_SYSTEM_SCRIPT_ROOT/resolvconf/$CONFIG_NAME
+else
+    LINK_SOURCE=$SYSTEM_SCRIPT_ROOT/resolvconf/$CONFIG_NAME
+fi
+
+LINK_TARGET=/etc/resolvconf/resolv.conf.d/$LINK_TARGET_NAME
+
+if [ ! -f $LINK_SOURCE ] && [ $CONFIG_NAME != "empty" ]; then
+    echo "Illegal config name '${CONFIG_NAME}', '${LINK_SOURCE}' NOT found nor is it 'empty'!"
+    exit 1
+fi
+
+if [[ $LINK_TARGET_NAME == "" ]]; then
+    echo "Illegal - empty resolvconf config name!"
+    exit 1
+fi
+
+if [[ $LINK_TARGET_NAME != "head" ]] && [[ $LINK_TARGET_NAME != "base" ]] && [[ $LINK_TARGET_NAME != "tail" ]]; then
+    echo "Illegal resolvconf config name '${LINK_TARGET_NAME}'!"
+    exit 1
+fi
+
+sudo rm -f $LINK_TARGET
+
+if [[ $CONFIG_NAME == "empty" ]]; then
+    sudo touch $LINK_TARGET
+else
+    sudo ln -s $LINK_SOURCE $LINK_TARGET
+fi
+
+sudo resolvconf -u

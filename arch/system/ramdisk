@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+if [ "$1" = "help" ]; then
+    echo "Usage:"
+    echo "1. Create ramdisk: ramdisk create <disk name> <disk size>"
+    echo "Example: ramdisk create ChromeCache 512M"
+    echo "2. Remove ramdisk: ramdisk remove <disk name>"
+    echo "Example: ramdisk remove ChromeCache"
+    echo "NOTE: you have to close all applications using the ramdisk before removing it!"
+    echo "3. Benchmark ramdisk: ramdisk benchmark <disk name>"
+    echo "Example: ramdisk benchmark ChromeCache"
+    exit 0
+fi
+
+if [ "$1" = "create" ]; then
+    mkdir -p /media/$2
+    mount -t tmpfs -o size=$3 tmpfs /media/$2
+    # To make the ramdisk permanently available, add it to /etc/fstab
+    grep /media/$2 /etc/mtab | sudo tee -a /etc/fstab
+fi
+
+if [ "$1" = "remove" ]; then
+    umount /media/$2
+    rm -R /media/$2
+fi
+
+if [ "$1" = "benchmark" ]; then
+    echo "Test reading speed:"
+    dd if=/media/$2/zero of=/dev/null bs=4k count=10000
+    echo "Test writing speed:"
+    dd if=/dev/zero of=/media/$2/zero bs=4k count=10000
+fi

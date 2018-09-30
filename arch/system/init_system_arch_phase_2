@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+# Check if running as root
+[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+
+# Check network first!
+# Start dhcpcd and make it auto startup
+#systemctl start dhcpcd@interface.service
+#systemctl enable dhcpcd@interface.service
+
+. /home/$SUDO_USER/bedroom/script/arch/util/env_vars.sh
+
+. $SCRIPT_UTIL_ROOT/update_bashrc_profile.sh
+
+. $SCRIPT_UTIL_ROOT/init_archlinuxcn_repo.sh
+
+sudo pacman -Sy
+
+# This step is already done in phase #1
+#. $SCRIPT_UTIL_ROOT/init_locale.sh
+
+. $SCRIPT_UTIL_ROOT/install_x_server.sh
+
+. $SCRIPT_UTIL_ROOT/install_driver.sh
+
+. $SCRIPT_UTIL_ROOT/install_xfce.sh
+
+. $SCRIPT_UTIL_ROOT/install_lightdm.sh
+
+. $SCRIPT_UTIL_SHARE/init_zsh.sh
+
+. $SCRIPT_UTIL_ROOT/install_zip_tools.sh
+
+. $SCRIPT_UTIL_ROOT/install_shadowsocks.sh
+
+. $SCRIPT_UTIL_ROOT/install_polipo.sh
+
+. $SCRIPT_UTIL_ROOT/init_python.sh
+
+. $SCRIPT_UTIL_ROOT/init_ruby.sh
+
+. $SCRIPT_UTIL_ROOT/install_fonts.sh
+
+. $SCRIPT_UTIL_ROOT/install_ime.sh
+
+. $SCRIPT_UTIL_ROOT/install_git.sh
+
+. $SCRIPT_UTIL_ROOT/install_tmux.sh
+
+. $SCRIPT_UTIL_ROOT/install_vim.sh
+
+. $SCRIPT_UTIL_ROOT/install_chromium.sh
+
+. $SCRIPT_UTIL_ROOT/install_sublime_text.sh
+
+. $SCRIPT_UTIL_ROOT/install_downloader.sh
+
+. $SCRIPT_UTIL_ROOT/install_multi_media.sh
+
+. $SCRIPT_UTIL_ROOT/install_image_tools.sh
+
+. $SCRIPT_UTIL_ROOT/install_util.sh
+
+. $SCRIPT_UTIL_ROOT/install_telegram.sh
+
+. $SCRIPT_UTIL_ROOT/install_numix_theme.sh
+
+# To upgrade the whole system
+#sudo pacman -Syu
+
+# To resolve possible gpg key issue, reinstall archlinuxcn-keyring by
+#sudo pacman -S archlinuxcn-keyring
+# then refresh keys by
+#sudo pacman-key --refresh-keys

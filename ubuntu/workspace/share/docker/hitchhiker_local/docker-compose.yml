@@ -1,0 +1,54 @@
+version: '2'
+# https://github.com/brookshi/Hitchhiker
+# Configuration documentation: http://doc.hitchhiker-api.com/cn/installation/configuration.html
+
+# To get IP address of the host machine from within container (in case you need to access APIs setup on your host machine)
+# do "docker exec -it hitchhiker_local_hitchhiker ip route show | awk '/default/ {print $3}'".
+services:
+    hitchhiker_local_hitchhiker:
+        image: brookshi/hitchhiker:v0.12.1
+        container_name: hitchhiker_local_hitchhiker
+        environment:
+            HITCHHIKER_DB_HOST: 'hitchhiker_local_db'
+            HITCHHIKER_APP_HOST: 'http://localhost:11000/'
+        networks:
+            - hitchhiker_local
+        ports:
+            # 因为跨域问题，必须用localhost:8080访问app
+            # https://github.com/brookshi/Hitchhiker/issues/37
+            - "11000:11000"
+            - "11010:11010"
+        links:
+            - hitchhiker_local_db
+    hitchhiker_local_db:
+        image: mysql:5.7
+        container_name: hitchhiker_local_db
+        environment:
+            TZ: 'UTC'
+            MYSQL_ROOT_PASSWORD: 'athrun123'
+            MYSQL_DATABASE: 'hitchhiker'
+            MYSQL_USER: 'hitchhiker_admin'
+            MYSQL_PASSWORD: 'athrun123'
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --skip-character-set-client-handshake
+        networks:
+            - hitchhiker_local
+        volumes:
+            #- $WORKSPACE_SCRIPT_SHARE/docker/hitchhiker_local/hitchhiker-mysql.cnf:/etc/mysql/conf.d/hitchhiker.cnf
+            - hitchhiker_local_db_data:/var/lib/mysql
+    hitchhiker_local_adminer:
+        image: adminer:4.6.2
+        container_name: hitchhiker_local_adminer
+        networks:
+            - hitchhiker_local
+        ports:
+            - '18083:8080'
+        links:
+            - hitchhiker_local_db
+volumes:
+    # All collections, requests are stored in DB.
+    hitchhiker_local_db_data:
+networks:
+    hitchhiker_local:

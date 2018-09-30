@@ -1,0 +1,31 @@
+version: '2'
+services:
+    mysql_local_mysql:
+        image: mysql/mysql-server
+        container_name: mysql_local_mysql
+        networks:
+            - mysql_local
+        volumes:
+            - mysql_local_db_data:/var/lib/mysql
+        ports:
+            - '13306:3306'
+        environment:
+            TZ: 'UTC'
+            MYSQL_ROOT_PASSWORD: '@ctive123'
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --skip-character-set-client-handshake
+    mysql_local_adminer:
+        image: adminer
+        container_name: mysql_local_adminer
+        networks:
+            - mysql_local
+        ports:
+            - '18081:8080'
+        links:
+            - mysql_local_mysql:mysql
+volumes:
+    mysql_local_db_data:
+networks:
+    mysql_local:

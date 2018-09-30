@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# https://github.com/cnbeining/Biligrab
+
+echo "Usage: biligrabdl <av number (only digits)> <parts, e.g. 1~11> <other parameters>"
+
+# -s: Default: 0
+# Source to download.
+# 0: The original API source, can be Letv backup,
+#    and can failed if the original video is not avalable(e.g., deleted)
+# 1: The CDN API source, "oversea accelerate".
+#    Can be MINICDN backup in Mainland China or oversea.
+#    Good to bypass some bangumi's limit.
+# 2: Force to use the original source.
+#    Use Flvcd to parase the video, but would fail if
+#    1) The original source DNE, e.g., some old videos
+#    2) The original source is Letvcloud itself.
+#    3) Other unknown reason(s) that stops Flvcd from parasing the video.
+# For any video that failed to parse, Biligrab will try to use Flvcd.
+# (Mainly for oversea users regarding to copyright-restricted bangumies.)
+# If the API is blocked, Biligrab would fake the UA.
+# 3: (Not stable) Use the HTML5 API.
+#    This works for downloading some cached Letvcloud videos, but is slow, and would fail for no reason sometimes.
+#    Will retry if unavalable.
+# 4: Use Flvcd.
+#    Good to fight with oversea and copyright restriction, but not working with iQiyi.
+#    May retrive better quality video, especially for Youku.
+# 5: Use BilibiliPr.
+#    Good to fight with some copyright restriction that BilibiliPr can fix.
+#    Not always working though.
+# 6: Use You-get (https://github.com/soimort/you-get).
+#    You need a you-get callable directly like "you-get -u blahblah".
+
+#./biligrab.py -a 6689736 -p 0 -d aria2c -v avconv
+
+cd $WORKSPACE_ROOT/gitrepo/biligrab
+./biligrab.py -a $1 -p $2 -r 4 $3
